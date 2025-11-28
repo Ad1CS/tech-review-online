@@ -1,11 +1,11 @@
 import { GoogleGenAI } from "@google/genai";
 
-const API_KEY = process.env.API_KEY || '';
-
-const ai = new GoogleGenAI({ apiKey: API_KEY });
+// Fix: Initialize GoogleGenAI with process.env.API_KEY directly
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const getAIResponse = async (userMessage: string, chatHistory: { role: string; parts: { text: string }[] }[]) => {
-  if (!API_KEY) {
+  // Fix: Check process.env.API_KEY directly
+  if (!process.env.API_KEY) {
     return "Система ИИ временно недоступна (отсутствует API ключ). Пожалуйста, свяжитесь с оператором по телефону.";
   }
 
